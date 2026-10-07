@@ -116,6 +116,15 @@ button:hover {
   border-radius: 15px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   transition: all 0.4s ease-in;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  color: white;
+  font-size: 22px;
+  font-weight: 800;
+  padding-bottom: 20px;
 }
 
 .container div:hover {
