@@ -5,16 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#7047eb">
-    <title>Palette Studio | Color Generator</title>
+
+    <title>Palette Studio | Color Palette Generator</title>
+
     <link rel="stylesheet" href="style.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
+    <!-- NAVBAR -->
+
     <nav class="navbar">
-        <a href="#" class="logo">
+
+        <a href="#home" class="logo">
             <span class="logo-icon">✿</span>
             Palette<span>Studio.</span>
         </a>
@@ -25,19 +33,30 @@
             <a href="#about">About</a>
         </div>
 
-        <a href="#generator" class="nav-btn">Get Started ↗</a>
+        <button id="themeBtn" class="theme-btn">
+            ☾ Dark Mode
+        </button>
+
     </nav>
 
+
+    <!-- HERO SECTION -->
+
     <main>
+
         <section class="hero" id="home">
+
             <div class="hero-content">
+
                 <span class="eyebrow">
                     <span class="dot"></span>
                     YOUR CREATIVE COLOR SPACE
                 </span>
 
-                <h1>Colors that bring<br>
-                    your ideas to <span>life.</span>
+                <h1>
+                    Colors that bring
+                    your ideas to
+                    <span>life.</span>
                 </h1>
 
                 <p>
@@ -51,12 +70,17 @@
                 </a>
 
                 <div class="hero-note">
-                    <span>✦</span> Made for creative minds
+                    <span>✦</span>
+                    Made for creative minds
                 </div>
+
             </div>
 
+
             <div class="hero-visual">
+
                 <div class="visual-card">
+
                     <div class="visual-top">
                         <span>COLOR INSPIRATION</span>
                         <span>✦ ✦ ✦</span>
@@ -71,45 +95,89 @@
                     </div>
 
                     <div class="visual-bottom">
+
                         <div>
                             <strong>Creative Palette</strong>
                             <p>Beautiful colors, endless possibilities.</p>
                         </div>
+
                         <span class="sparkle">✧</span>
+
                     </div>
+
                 </div>
 
                 <div class="floating-shape shape-one">✦</div>
                 <div class="floating-shape shape-two">✿</div>
+
             </div>
+
         </section>
 
+
+        <!-- GENERATOR SECTION -->
+
         <section class="generator-section" id="generator">
+
             <div class="section-heading">
+
                 <span class="section-tag">THE COLOR LAB</span>
-                <h2>Create Your Perfect <span>Palette</span></h2>
-                <p>Choose your favorite color and let the magic happen.</p>
+
+                <h2>
+                    Create Your Perfect
+                    <span>Palette</span>
+                </h2>
+
+                <p>
+                    Choose your favorite color and let the magic happen.
+                </p>
+
             </div>
 
+
             <div class="generator-card">
+
+
+                <!-- COLOR PICKER -->
+
                 <div class="picker-area">
+
                     <div class="picker-info">
+
                         <div class="picker-icon">◉</div>
+
                         <div>
                             <h3>Choose Your Base Color</h3>
                             <p>Start with any color you love.</p>
                         </div>
+
                     </div>
+
 
                     <div class="color-control">
-                        <input type="color" id="Color" value="#7047EB">
+
+                        <input
+                            type="color"
+                            id="Color"
+                            value="#7047EB"
+                            aria-label="Choose base color"
+                        >
+
                         <div class="selected-info">
+
                             <span>SELECTED COLOR</span>
-                            <strong id="selectedHex">#7047EB</strong>
+
+                            <strong id="selectedHex">
+                                #7047EB
+                            </strong>
+
                         </div>
+
                     </div>
 
+
                     <div class="action-buttons">
+
                         <button id="generateBtn" class="primary-btn">
                             Generate Palette <span>✦</span>
                         </button>
@@ -117,33 +185,89 @@
                         <button id="randomBtn" class="secondary-btn">
                             ↻ Random Color
                         </button>
+
                     </div>
+
                 </div>
+
+
+                <!-- HARMONY OPTIONS -->
+
+                <div class="advanced-controls">
+
+                    <div>
+                        <label for="harmony">Color Harmony</label>
+
+                        <p>
+                            Choose how your colors work together.
+                        </p>
+                    </div>
+
+                    <select id="harmony">
+
+                        <option value="monochromatic">
+                            Monochromatic
+                        </option>
+
+                        <option value="analogous">
+                            Analogous
+                        </option>
+
+                        <option value="complementary">
+                            Complementary
+                        </option>
+
+                        <option value="triadic">
+                            Triadic
+                        </option>
+
+                        <option value="split">
+                            Split Complementary
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- PALETTE HEADER -->
 
                 <div class="palette-header">
+
                     <div>
                         <h3>Your Color Collection</h3>
-                        <p>Click any color to copy its HEX code.</p>
+
+                        <p>
+                            Click any color to copy its HEX code.
+                        </p>
                     </div>
-                    <span class="palette-count">06 COLORS</span>
+
+                    <span class="palette-count">
+                        06 COLORS
+                    </span>
+
                 </div>
 
+
+                <!-- COLOR CARDS -->
+
                 <div class="container">
+
                     <button class="color-box box1" type="button" aria-label="Copy color 1">
                         <span class="color-name">COLOR 01</span>
-                        <strong>#F0EAFE</strong>
+                        <strong>#E5DCFF</strong>
                         <span class="copy-icon">▢</span>
                     </button>
 
                     <button class="color-box box2" type="button" aria-label="Copy color 2">
                         <span class="color-name">COLOR 02</span>
-                        <strong>#C8B8FA</strong>
+                        <strong>#C2AFFF</strong>
                         <span class="copy-icon">▢</span>
                     </button>
 
                     <button class="color-box box3" type="button" aria-label="Copy color 3">
                         <span class="color-name">COLOR 03</span>
-                        <strong>#A38AF4</strong>
+                        <strong>#9879F0</strong>
                         <span class="copy-icon">▢</span>
                     </button>
 
@@ -155,46 +279,149 @@
 
                     <button class="color-box box5" type="button" aria-label="Copy color 5">
                         <span class="color-name">COLOR 05</span>
-                        <strong>#4B2AAE</strong>
+                        <strong>#5632B7</strong>
                         <span class="copy-icon">▢</span>
                     </button>
 
                     <button class="color-box box6" type="button" aria-label="Copy color 6">
                         <span class="color-name">COLOR 06</span>
-                        <strong>#2C195F</strong>
+                        <strong>#382071</strong>
                         <span class="copy-icon">▢</span>
                     </button>
+
                 </div>
+
+
+                <!-- PALETTE FOOTER -->
 
                 <div class="palette-footer">
+
                     <span>✦ Your creativity, your colors.</span>
-                    <span id="copyMessage" aria-live="polite">Ready to copy</span>
+
+                    <span id="copyMessage" aria-live="polite">
+                        Ready to create
+                    </span>
+
                 </div>
+
+
+                <!-- ADVANCED ACTIONS -->
+
+                <div class="extra-actions">
+
+                    <button id="favoriteBtn" class="secondary-btn">
+                        ♡ Save Favorite
+                    </button>
+
+                    <button id="downloadBtn" class="secondary-btn">
+                        ↓ Download PNG
+                    </button>
+
+                    <button id="exportBtn" class="secondary-btn">
+                        &lt;/&gt; Export CSS
+                    </button>
+
+                </div>
+
+
+                <!-- FAVORITES -->
+
+                <div class="favorites-section">
+
+                    <div class="palette-header">
+
+                        <div>
+                            <h3>My Favorite Palettes ♡</h3>
+
+                            <p>
+                                Your saved color combinations.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="favoritesContainer"
+                        class="favorites-container"
+                    >
+
+                        <p class="empty-message">
+                            No favorites saved yet.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EXPORT OUTPUT -->
+
+                <div class="export-section">
+
+                    <label for="exportOutput">
+                        CSS Export
+                    </label>
+
+                    <textarea
+                        id="exportOutput"
+                        readonly
+                        placeholder="Your exported CSS variables will appear here..."
+                    ></textarea>
+
+                    <button id="copyExportBtn" class="secondary-btn">
+                        Copy CSS
+                    </button>
+
+                </div>
+
             </div>
+
         </section>
 
+
+        <!-- ABOUT SECTION -->
+
         <section class="about-section" id="about">
+
             <div class="about-icon">✿</div>
-            <h2>A little color goes a <span>long way.</span></h2>
+
+            <h2>
+                A little color goes a
+                <span>long way.</span>
+            </h2>
+
             <p>
                 Whether you're designing a website, creating graphics,
                 or exploring new ideas, find the colors that make
                 your creativity shine.
             </p>
+
         </section>
+
     </main>
 
+
+    <!-- FOOTER -->
+
     <footer>
-        <a href="#" class="logo">
+
+        <a href="#home" class="logo">
             <span class="logo-icon">✿</span>
             Palette<span>Studio.</span>
         </a>
 
-        <p>Made with creativity & love. © 2026</p>
+        <p>
+            Made with creativity & love. © 2026
+        </p>
 
-        <a href="#home" class="back-top">Back to top ↑</a>
+        <a href="#home" class="back-top">
+            Back to top ↑
+        </a>
+
     </footer>
 
+
     <script src="index.js"></script>
+
 </body>
 </html>
