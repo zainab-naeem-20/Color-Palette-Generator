@@ -1,129 +1,189 @@
-let color = document.querySelector("#Color");
-let button = document.querySelector("button");
-let boxes = document.querySelectorAll(".container div");
+
+const color = document.querySelector("#Color");
+const button = document.querySelector("#generateBtn");
+const randomBtn = document.querySelector("#randomBtn");
+const boxes = document.querySelectorAll(".color-box");
+const selectedHex = document.querySelector("#selectedHex");
+const copyMessage = document.querySelector("#copyMessage");
+
+const lightness = [90, 75, 60, 50, 35, 20];
 
 function hexToRgb(hex) {
-  let r = parseInt(hex.slice(1, 3), 16);
-  let g = parseInt(hex.slice(3, 5), 16);
-  let b = parseInt(hex.slice(5, 7), 16);
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
 
-  return [r, g, b];
+    return [r, g, b];
 }
 
 function rgbToHsl(r, g, b) {
-  r /= 255;
-  g /= 255;
-  b /= 255;
+    r /= 255;
+    g /= 255;
+    b /= 255;
 
-  let max = Math.max(r, g, b);
-  let min = Math.min(r, g, b);
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
 
-  let h;
-  let s;
-  let l = (max + min) / 2;
+    let h;
+    let s;
 
-  if (max === min) {
-    h = 0;
-    s = 0;
-  } else {
-    let d = max - min;
+    const l = (max + min) / 2;
 
-    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    if (max === min) {
+        h = 0;
+        s = 0;
+    } else {
+        const d = max - min;
 
-    switch (max) {
-      case r:
-        h = (g - b) / d + (g < b ? 6 : 0);
-        break;
+        s = l > 0.5
+            ? d / (2 - max - min)
+            : d / (max + min);
 
-      case g:
-        h = (b - r) / d + 2;
-        break;
+        switch (max) {
+            case r:
+                h = (g - b) / d + (g < b ? 6 : 0);
+                break;
 
-      case b:
-        h = (r - g) / d + 4;
-        break;
+            case g:
+                h = (b - r) / d + 2;
+                break;
+
+            case b:
+                h = (r - g) / d + 4;
+                break;
+        }
+
+        h /= 6;
     }
 
-    h /= 6;
-  }
-
-  return [h * 360, s * 100, l * 100];
+    return [h * 360, s * 100, l * 100];
 }
 
 function hslToHex(h, s, l) {
-  s /= 100;
-  l /= 100;
+    s /= 100;
+    l /= 100;
 
-  let c = (1 - Math.abs(2 * l - 1)) * s;
-  let x = c * (1 - Math.abs(((h / 60) % 2) - 1));
-  let m = l - c / 2;
+    const c = (1 - Math.abs(2 * l - 1)) * s;
+    const x = c * (1 - Math.abs((h / 60) % 2 - 1));
+    const m = l - c / 2;
 
-  let r = 0;
-  let g = 0;
-  let b = 0;
+    let r = 0;
+    let g = 0;
+    let b = 0;
 
-  if (h < 60) {
-    r = c;
-    g = x;
-  } else if (h < 120) {
-    r = x;
-    g = c;
-  } else if (h < 180) {
-    g = c;
-    b = x;
-  } else if (h < 240) {
-    g = x;
-    b = c;
-  } else if (h < 300) {
-    r = x;
-    b = c;
-  } else {
-    r = c;
-    b = x;
-  }
+    if (h < 60) {
+        r = c;
+        g = x;
+    } else if (h < 120) {
+        r = x;
+        g = c;
+    } else if (h < 180) {
+        g = c;
+        b = x;
+    } else if (h < 240) {
+        g = x;
+        b = c;
+    } else if (h < 300) {
+        r = x;
+        b = c;
+    } else {
+        r = c;
+        b = x;
+    }
 
-  r = Math.round((r + m) * 255);
-  g = Math.round((g + m) * 255);
-  b = Math.round((b + m) * 255);
+    r = Math.round((r + m) * 255);
+    g = Math.round((g + m) * 255);
+    b = Math.round((b + m) * 255);
 
-  return (
-    "#" +
-    r.toString(16).padStart(2, "0") +
-    g.toString(16).padStart(2, "0") +
-    b.toString(16).padStart(2, "0")
-  );
+    return (
+        "#" +
+        r.toString(16).padStart(2, "0") +
+        g.toString(16).padStart(2, "0") +
+        b.toString(16).padStart(2, "0")
+    ).toUpperCase();
 }
 
-button.addEventListener("click", function () {
-  let selectedColor = color.value;
+// Generate color palette
 
-  let [r, g, b] = hexToRgb(selectedColor);
+function generatePalette() {
+    const selectedColor = color.value;
 
-  let [h, s, l] = rgbToHsl(r, g, b);
+    selectedHex.textContent = selectedColor.toUpperCase();
 
-  let lightness = [90, 75, 60, 50, 35, 20];
+    const [r, g, b] = hexToRgb(selectedColor);
+    const [h, s] = rgbToHsl(r, g, b);
 
-  boxes.forEach(function (box, index) {
-    let newColor = hslToHex(h, s, lightness[index]);
+    boxes.forEach((box, index) => {
+        const newColor = hslToHex(h, s, lightness[index]);
 
-    box.style.backgroundColor = newColor;
+        box.style.backgroundColor = newColor;
+        box.querySelector("strong").textContent = newColor;
 
-    box.dataset.color = newColor;
+        box.dataset.color = newColor;
 
-    box.textContent = newColor;
-  });
+        box.querySelector(".color-name").textContent =
+            `COLOR 0${index + 1}`;
+
+        box.classList.remove("copied");
+
+        box.style.color = "white";
+    });
+
+    copyMessage.textContent = "Your new palette is ready!";
+}
+
+// Random color generator
+
+function generateRandomColor() {
+    const randomColor =
+        "#" +
+        Math.floor(Math.random() * 16777215)
+            .toString(16)
+            .padStart(6, "0");
+
+    color.value = randomColor;
+    generatePalette();
+}
+
+// Copy HEX color
+
+async function copyColor(box) {
+    const hex = box.dataset.color;
+
+    if (!hex) return;
+
+    try {
+        await navigator.clipboard.writeText(hex);
+
+        box.querySelector(".copy-icon").textContent = "✓";
+        copyMessage.textContent = `${hex} copied successfully!`;
+
+        setTimeout(() => {
+            box.querySelector(".copy-icon").textContent = "▢";
+        }, 1200);
+
+    } catch (error) {
+        copyMessage.textContent =
+            "Clipboard unavailable. Please copy manually: " + hex;
+    }
+}
+
+// Event listeners
+
+button.addEventListener("click", generatePalette);
+
+randomBtn.addEventListener("click", generateRandomColor);
+
+color.addEventListener("input", () => {
+    selectedHex.textContent = color.value.toUpperCase();
 });
 
-boxes.forEach(function (box) {
-  box.addEventListener("click", function () {
-    let hex = box.dataset.color;
-
-    navigator.clipboard.writeText(hex);
-
-    box.textContent = "Copied!";
-
-    setTimeout(function () {
-      box.textContent = hex;
-    }, 1000);
-  });
+boxes.forEach((box) => {
+    box.addEventListener("click", () => {
+        copyColor(box);
+    });
 });
+
+// Initial palette
+
+generatePalette();
